@@ -29,9 +29,10 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -e .[all,dev,doc,test]
-      - name: Lint
-        run: bash scripts/lint.sh
       - name: Test
-        run: bash scripts/test.sh
-      - name: Upload coverage
-        uses: codecov/codecov-action@v3
+        run: pip install fastapi
+      - name: Test2
+        run: pip install "uvicorn[standard]"
+      - name: Test3
+        run: uvicorn main:app --reload
+        
